@@ -5,7 +5,6 @@ import plotly.graph_objects as go
 
 # 2. Page config (must be first st. command)
 st.set_page_config(page_title="Market Insight Dashboard", page_icon="📈", layout="wide")
-st.sidebar.markdown("## Navigation")
 
 # 3. CSS styling
 st.markdown("""
