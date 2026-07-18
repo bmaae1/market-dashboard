@@ -15,6 +15,9 @@ st.markdown("""
 <style>
 .stApp { background-color: #0E1117; color: #FAFAFA; }
 .block-container { padding: 0rem 1rem 0rem 1rem !important; }
+[data-testid="stHeader"] {
+    background: transparent !important;
+}
 [data-testid="stSidebarNavLink"] {
     font-size: 28px !important;
     font-weight: 700 !important;
