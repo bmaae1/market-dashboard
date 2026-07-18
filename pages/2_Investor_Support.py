@@ -2,10 +2,7 @@ import streamlit as st
 import pandas as pd
 import datetime
 import yfinance as yf
-from ta.momentum import RSIIndicator, StochasticOscillator
-from ta.trend import MACD, ADXIndicator, EMAIndicator
-from ta.volatility import BollingerBands, AverageTrueRange
-from ta.volume import OnBalanceVolumeIndicator
+import pandas_ta as ta
 import numpy as np
 from xgboost import XGBRegressor
 
@@ -93,25 +90,25 @@ if predict_btn:
             low   = df['Low'].squeeze()
             vol   = df['Volume'].squeeze()
 
-            df['RSI'] = RSIIndicator(close, window=14).rsi()
-            macd = MACD(close, window_fast=12, window_slow=26, window_sign=9)
-            df['MACD'] = macd.macd()
-            df['MACD_hist'] = macd.macd_diff()
-            bb = BollingerBands(close, window=20, window_dev=2)
-            df['BB_upper'] = bb.bollinger_hband()
-            df['BB_middle'] = bb.bollinger_mavg()
-            df['BB_lower'] = bb.bollinger_lband()
+            df['RSI'] = ta.rsi(close, length=14)
+            macd = ta.macd(close, fast=12, slow=26, signal=9)
+            df['MACD'] = macd.iloc[:, 0]
+            df['MACD_hist'] = macd.iloc[:, 1]
+            bb = ta.bbands(close, length=20, std=2)
+            df['BB_upper'] = bb.iloc[:, 2]
+            df['BB_middle'] = bb.iloc[:, 1]
+            df['BB_lower'] = bb.iloc[:, 0]
             df['BB_width'] = (df['BB_upper'] - df['BB_lower']) / df['BB_middle']
-            adx = ADXIndicator(high, low, close, window=20)
-            df['ADX20'] = adx.adx()
-            df['DI_plus'] = adx.adx_pos()
-            df['DI_minus'] = adx.adx_neg()
-            df['OBV'] = OnBalanceVolumeIndicator(close, vol).on_balance_volume()
-            stoch = StochasticOscillator(high, low, close, window=14, smooth_window=3)
-            df['Stoch_K'] = stoch.stoch()
-            df['ATR'] = AverageTrueRange(high, low, close, window=14).average_true_range()
-            df['EMA_9'] = EMAIndicator(close, window=9).ema_indicator()
-            df['EMA_21'] = EMAIndicator(close, window=21).ema_indicator()
+            adx = ta.adx(high, low, close, length=20)
+            df['ADX20'] = adx.iloc[:, 0]
+            df['DI_plus'] = adx.iloc[:, 1]
+            df['DI_minus'] = adx.iloc[:, 2]
+            df['OBV'] = ta.obv(close, vol)
+            stoch = ta.stoch(high, low, close, k=14, d=3)
+            df['Stoch_K'] = stoch.iloc[:, 0]
+            df['ATR'] = ta.atr(high, low, close, length=14)
+            df['EMA_9'] = ta.ema(close, length=9)
+            df['EMA_21'] = ta.ema(close, length=21)
             df['EMA_crossover'] = (df['EMA_9'] > df['EMA_21']).astype(int)
             df['return'] = close.pct_change() * 100
             return df
