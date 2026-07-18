@@ -2,8 +2,6 @@ streamlit
 pandas
 numpy
 yfinance
-pandas_ta==0.4.67b0
+ta
 xgboost
 plotly
-numba==0.59.1
-llvmlite==0.42.0
