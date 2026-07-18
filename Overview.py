@@ -17,7 +17,6 @@ st.markdown("""
 [data-testid="stAppViewBlockContainer"] { padding-top: 0rem !important; }
 [data-testid="stSidebarCollapsedControl"] { display: block !important; }
 [data-testid="collapsedControl"] { display: block !important; }
-header { display: none !important; }
 #root > div:first-child { margin-top: 0 !important; }[data-testid="stSidebarNavLink"] {
     font-size: 28px !important;
     font-weight: 700 !important;
