@@ -5,7 +5,6 @@ import plotly.graph_objects as go
 
 # 2. Page config (must be first st. command)
 st.set_page_config(page_title="Market Insight Dashboard", page_icon="📈", layout="wide", initial_sidebar_state="expanded")
-st.sidebar.markdown("## Navigation")
 
 # 3. CSS styling
 st.markdown("""
@@ -13,6 +12,9 @@ st.markdown("""
 .stApp { background-color: #0E1117; color: #FAFAFA; }
 .block-container { padding: 0rem 1rem 0rem 1rem !important; }
 [data-testid="stAppViewBlockContainer"] { padding-top: 0rem !important; }
+[data-testid="stHeader"] {
+    background: transparent !important;
+}
 [data-testid="stSidebarCollapsedControl"] { display: block !important; }
 [data-testid="collapsedControl"] { display: block !important; }
 #root > div:first-child { margin-top: 0 !important; }[data-testid="stSidebarNavLink"] {
