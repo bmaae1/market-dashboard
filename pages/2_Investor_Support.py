@@ -15,7 +15,7 @@ st.markdown("""
 [data-testid="stHeader"] {
     background: transparent !important;
 }
-[data-testid="stSidebarNavLink"] {
+[data-testid="stSidebarNavLink"] p {
     font-size: 28px !important;
     font-weight: 700 !important;
 }
