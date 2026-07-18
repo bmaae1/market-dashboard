@@ -18,8 +18,8 @@ st.markdown("""
 [data-testid="stSidebarCollapsedControl"] { display: block !important; }
 [data-testid="collapsedControl"] { display: block !important; }
 #root > div:first-child { margin-top: 0 !important; }
-section[data-testid="stSidebarNavLink"] a {
-    font-size: 48px !important;
+[data-testid="stSidebarNavLink"] p {
+    font-size: 28px !important;
     font-weight: 700 !important;
 }
 </style>
