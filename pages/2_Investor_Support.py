@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import datetime
 import yfinance as yf
-import pandas_ta as ta
+import ta
 import numpy as np
 from xgboost import XGBRegressor
 
