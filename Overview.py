@@ -566,60 +566,62 @@ with col3:
 
 # classification
 # Classification performance card
+# Classification performance card
 with col3:
     with st.container(border=True):
-        st.markdown("### Random Forest Classification Performance")
-    
-        # Classification results per market
+        st.markdown("### XGBoost Classification Performance")
+
+        # Rabia's XGBoost F1-scores — initial vs tuned, per stage
         clf_results = {
             "S&P 500": {
-                "Stage 1": {"Accuracy": 42.6, "F1": 43.0},
-                "Stage 2": {"Accuracy": 59.1, "F1": 58.0},
+                "Stage 1": {"Initial Model": 37.1, "Tuned Model": 50.4},
+                "Stage 2": {"Initial Model": 58.1, "Tuned Model": 67.6},
             },
             "FTSE 100": {
-                "Stage 1": {"Accuracy": 45.5, "F1": 46.1},
-                "Stage 2": {"Accuracy": 57.6, "F1": 54.23},
+                "Stage 1": {"Initial Model": 38.7, "Tuned Model": 51.2},
+                "Stage 2": {"Initial Model": 42.8, "Tuned Model": 50.7},
             },
         }
-    
+
         data = clf_results[market]
-        metrics = ["Accuracy", "F1"]
-    
+        x_labels = ["Initial Model", "Tuned Model"]
+
         fig_clf = go.Figure()
-    
+
         # Stage 1 bars
         fig_clf.add_trace(go.Bar(
             name="Stage 1",
-            x=metrics,
-            y=[data["Stage 1"][m] for m in metrics],
+            x=x_labels,
+            y=[data["Stage 1"][x] for x in x_labels],
             marker_color="#26a69a",  # teal
         ))
-    
+
         # Stage 2 bars
         fig_clf.add_trace(go.Bar(
             name="Stage 2",
-            x=metrics,
-            y=[data["Stage 2"][m] for m in metrics],
+            x=x_labels,
+            y=[data["Stage 2"][x] for x in x_labels],
             marker_color="#f5a623",  # orange
         ))
-    
+
         fig_clf.update_layout(
             hoverlabel=hover_style,
-            title=f"Next-day Direction Classification (UP/DOWN) — {market}",
+            title=f"XGBoost F1-Score — Initial vs Tuned — {market}",
             template="plotly_dark",
             barmode="group",
             hovermode="x unified",
             height=300,
             margin=dict(l=40, r=40, t=40, b=40),
-            yaxis=dict(title="Score"),
+            yaxis=dict(title="F1-Score"),
             legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="right",  # anchor to right
-            x=1,              # push to far right
-        ),        )
-    
+                orientation="h",
+                yanchor="bottom",
+                y=1.02,
+                xanchor="right",
+                x=1,
+            ),
+        )
+
         st.plotly_chart(fig_clf, use_container_width=True)
 
 
