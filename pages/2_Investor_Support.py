@@ -92,6 +92,8 @@ if predict_btn:
 
             df['RSI'] = ta.rsi(close, length=14)
             macd = ta.macd(close, fast=12, slow=26, signal=9)
+            if macd is None:
+                raise ValueError("MACD could not be calculated.")
             df['MACD'] = macd.iloc[:, 0]
             df['MACD_hist'] = macd.iloc[:, 1]
             bb = ta.bbands(close, length=20, std=2)
