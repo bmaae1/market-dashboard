@@ -701,7 +701,7 @@ with col2:
                 title="Date",
                 rangebreaks=[dict(bounds=["sat", "mon"])],  # remove weekends
             ),
-            yaxis=dict(title="Next Day Return (%)"),
+            yaxis=dict(title="Next-5-Day Return (%)"),
             legend=dict(
                 orientation="h",
                 yanchor="bottom",
@@ -712,7 +712,7 @@ with col2:
         )
         st.plotly_chart(fig_pred, use_container_width=True)
         st.markdown(
-    "<p style='font-size:22px; font-weight:bold;'>Prediction target: Next-day return (%)</p>",
+    "<p style='font-size:22px; font-weight:bold;'>Prediction target: Next-5-day return (%)</p>",
     unsafe_allow_html=True
 )
         
